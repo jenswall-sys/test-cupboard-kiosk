@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Supabase Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<h2>Device List</h2>
+<button onclick="loadDevices()">Load Devices</button>
+<ul id="deviceList"></ul>
+
+<script>
+  const supabaseUrl = "https://imciqjnnyydyxxwbwxhu.supabase.co"
+  const supabaseAnonKey = "sb_publishable_P6UCrgs-ncB3GcfdJrCGoQ_lQtn01JC"
+
+  const { createClient } = supabase
+  const client = createClient(supabaseUrl, supabaseAnonKey)
+
+  async function loadDevices() {
+    const { data, error } = await client
+      .from("devices")
+      .select("*")
+
+    if (error) {
+      alert("Error: " + error.message)
+      return
+    }
+
+    const list = document.getElementById("deviceList")
+    list.innerHTML = ""
+
+    data.forEach(device => {
+      const li = document.createElement("li")
+      li.innerHTML = `
+        <strong>${device.name}</strong> -
+        ${device.is_borrowed ? 
+          "🔴 Borrowed by " + device.borrowed_by : 
+          "🟢 Available"}
+        <button onclick="toggleBorrow(${device.id}, ${device.is_borrowed})">
+          ${device.is_borrowed ? "Return" : "Borrow"}
+        </button>
+      `
+      list.appendChild(li)
+    })
+  }
+
+  async function toggleBorrow(id, isBorrowed) {
+    if (!isBorrowed) {
+      await client
+        .from("devices")
+        .update({
+          is_borrowed: true,
+          borrowed_by: "Jens",
+          borrowed_at: new Date().toISOString()
+        })
+        .eq("id", id)
+    } else {
+      await client
+        .from("devices")
+        .update({
+          is_borrowed: false,
+          borrowed_by: null,
+          borrowed_at: null
+        })
+        .eq("id", id)
+    }
+
+    loadDevices()
+  }
+</script>
+
+</body>
+</html>
