@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Test Cupboard</title>
@@ -33,7 +34,7 @@
       padding: 20px;
       text-align: center;
       font-size: 18px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.1s ease;
     }
 
@@ -83,76 +84,679 @@
       background: #c62828;
       color: white;
     }
+
+    .code-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .device-name {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .overdue {
+      outline: 6px solid rgba(198, 40, 40, 0.6);
+    }
+
+    .borrowed-by {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .borrowed-ago {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .available-status {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .counter {
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #borrowedCount {
+      font-weight: bold;
+      display: inline-block;
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+
+    .bump {
+      transform: scale(1.4);
+      color: #c62828;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .modal-content {
+      width: min(900px, 92vw);
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .modal-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .name-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .name-btn,
+    .other-btn,
+    .add-btn,
+    .cancel-btn {
+      font-size: 20px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .name-btn {
+      background: #e9e9e9;
+    }
+
+    .other-btn {
+      background: #222;
+      color: white;
+      width: 100%;
+    }
+
+    .cancel-btn {
+      background: #bbb;
+      width: 100%;
+    }
+
+    .other-input-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin: 14px 0 6px;
+    }
+
+    .other-input-row input {
+      font-size: 20px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+    }
+
+    .add-btn {
+      background: #2e7d32;
+      color: white;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 20px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .log-btn {
+      font-size: 18px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background: #222;
+      color: #fff;
+    }
+
+    .log-modal {
+      width: min(1100px, 94vw);
+    }
+
+    .modal-title-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .close-btn {
+      font-size: 18px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background: #bbb;
+    }
+
+    .log-status {
+      font-size: 16px;
+      color: #555;
+      margin: 6px 0 12px;
+    }
+
+    .log-table-wrap {
+      max-height: 70vh;
+      overflow: auto;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+
+    .log-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .log-table th,
+    .log-table td {
+      text-align: left;
+      padding: 12px 12px;
+      border-bottom: 1px solid #eee;
+      font-size: 16px;
+    }
+
+    .log-table th {
+      position: sticky;
+      top: 0;
+      background: #f7f7f7;
+      z-index: 1;
+    }
+
+    .event-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .event-borrow {
+      background: #ffe7e7;
+    }
+
+    .event-return {
+      background: #e7ffe7;
+    }
+
+    .device-line-1 {
+      font-weight: 700;
+    }
+
+    .device-line-2 {
+      font-size: 14px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .os-info {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 8px;
+    }
   </style>
 </head>
 
 <body>
+  <h1>Test Hardware Cupboard</h1>
+  <div class="topbar">
+    <div class="counter">
+      Currently borrowed:
+      <span id="borrowedCount">0</span>
+      of
+      <span id="totalCount">0</span>
+    </div>
 
-<h1>Test Hardware Cupboard</h1>
+    <button class="log-btn" onclick="openLogModal()">View log</button>
+  </div>
 
-<div id="deviceGrid" class="grid"></div>
+  <div id="logModal" class="modal hidden">
+    <div class="modal-content log-modal">
+      <div class="modal-title-row">
+        <div class="modal-title">Hardware log</div>
+        <button class="close-btn" onclick="closeLogModal()">Close</button>
+      </div>
 
-<script>
-  const supabaseUrl = "https://imciqjnnyydyxxwbwxhu.supabase.co"
-  const supabaseAnonKey = "sb_publishable_P6UCrgs-ncB3GcfdJrCGoQ_lQtn01JC"
+      <div id="logStatus" class="log-status">Loading...</div>
 
-  const { createClient } = supabase
-  const client = createClient(supabaseUrl, supabaseAnonKey)
+      <div class="log-table-wrap">
+        <table class="log-table">
+          <thead>
+            <tr>
+              <th>When</th>
+              <th>Event</th>
+              <th>Device</th>
+              <th>User</th>
+            </tr>
+          </thead>
+          <tbody id="logBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-  async function loadDevices() {
-    const { data, error } = await client
-      .from("devices")
-      .select("*")
-      .order("name")
+  <div id="deviceGrid" class="grid"></div>
 
-    if (error) {
-      alert(error.message)
-      return
+  <div id="nameModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-title">Who is borrowing?</div>
+
+      <div id="nameButtons" class="name-buttons"></div>
+
+      <div class="other-row">
+        <button class="other-btn" onclick="showOtherInput()">Other…</button>
+      </div>
+
+      <div id="otherInputRow" class="other-input-row hidden">
+        <input id="otherNameInput" type="text" placeholder="Enter name"
+          onkeydown="if (event.key === 'Enter') addAndUseOtherName()"> <button class="add-btn"
+          onclick="addAndUseOtherName()">Add & Use</button>
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" onclick="closeNameModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <button onclick="resetNames()" style="position:fixed;bottom:10px;right:10px;">
+    Reset Names
+  </button>
+
+  <script>
+    const supabaseUrl = "https://imciqjnnyydyxxwbwxhu.supabase.co"
+    const supabaseAnonKey = "sb_publishable_P6UCrgs-ncB3GcfdJrCGoQ_lQtn01JC"
+
+    const { createClient } = supabase
+    const client = createClient(supabaseUrl, supabaseAnonKey)
+
+    function formatDateTime(iso) {
+      if (!iso) return ""
+      const d = new Date(iso)
+      return d.toLocaleString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      })
     }
 
-    const grid = document.getElementById("deviceGrid")
-    grid.innerHTML = ""
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;")
+    }
 
-    data.forEach(device => {
-      const tile = document.createElement("div")
-      tile.className = "tile " + (device.is_borrowed ? "borrowed" : "available")
+    function deviceLabel(device) {
+      if (!device) return { line1: "Unknown device", line2: "" }
+      const line1 = device.code_name || "No code"
+      const line2 = device.name || ""
+      return { line1, line2 }
+    }
 
-      tile.innerHTML = `
-        ${device.image_url ? `<img src="${device.image_url}">` : ""}
-        <div class="name">${device.name}</div>
-        <div class="status">
-          ${device.is_borrowed 
-            ? `🔴 Borrowed by ${device.borrowed_by || "Unknown"}`
-            : "🟢 Available"}
-        </div>
-        <button class="${device.is_borrowed ? "return-btn" : "borrow-btn"}"
-          onclick="toggleBorrow(${device.id}, ${device.is_borrowed})">
-          ${device.is_borrowed ? "Return" : "Borrow"}
-        </button>
-      `
+    async function openLogModal() {
+      document.getElementById("logModal").classList.remove("hidden")
+      await loadLog()
+    }
 
-      grid.appendChild(tile)
-    })
-  }
+    function closeLogModal() {
+      document.getElementById("logModal").classList.add("hidden")
+    }
 
-  async function toggleBorrow(id, isBorrowed) {
+    async function loadLog() {
+      const statusEl = document.getElementById("logStatus")
+      const bodyEl = document.getElementById("logBody")
 
-    if (!isBorrowed) {
-      const name = prompt("Your name?")
+      statusEl.textContent = "Loading..."
+      bodyEl.innerHTML = ""
+
+      // 1) Fetch latest transactions
+      const { data: txs, error: txErr } = await client
+        .from("transactions")
+        .select("id, device_id, user_name, borrowed_at, returned_at")
+        .order("borrowed_at", { ascending: false })
+        .limit(200)
+
+      if (txErr) {
+        console.error(txErr)
+        statusEl.textContent = "Failed to load log: " + txErr.message
+        return
+      }
+
+      // 2) Fetch devices for mapping (code_name + name)
+      const { data: devices, error: devErr } = await client
+        .from("devices")
+        .select("id, code_name, name")
+
+      if (devErr) {
+        console.error(devErr)
+        statusEl.textContent = "Failed to load devices: " + devErr.message
+        return
+      }
+
+      const deviceMap = new Map()
+      devices.forEach(d => deviceMap.set(d.id, d))
+
+      // 3) Expand transactions into event rows (borrow + return)
+      const events = []
+      for (const t of txs) {
+        const dev = deviceMap.get(t.device_id)
+        events.push({
+          when: t.borrowed_at,
+          type: "borrow",
+          device: dev,
+          user: t.user_name || ""
+        })
+        if (t.returned_at) {
+          events.push({
+            when: t.returned_at,
+            type: "return",
+            device: dev,
+            user: t.user_name || ""
+          })
+        }
+      }
+
+      // Sort newest first by timestamp
+      events.sort((a, b) => new Date(b.when) - new Date(a.when))
+
+      // Limit displayed rows (UI performance)
+      const shown = events.slice(0, 80)
+
+      statusEl.textContent = `Showing ${shown.length} of ${events.length} events`
+
+      bodyEl.innerHTML = shown.map(e => {
+        const dt = formatDateTime(e.when)
+        const typeLabel = e.type === "borrow" ? "Borrow" : "Return"
+        const pillClass = e.type === "borrow" ? "event-borrow" : "event-return"
+        const devLbl = deviceLabel(e.device)
+
+        return `
+      <tr>
+        <td>${escapeHtml(dt)}</td>
+        <td><span class="event-pill ${pillClass}">${escapeHtml(typeLabel)}</span></td>
+        <td>
+          <div class="device-line-1">${escapeHtml(devLbl.line1)}</div>
+          <div class="device-line-2">${escapeHtml(devLbl.line2)}</div>
+        </td>
+        <td>${escapeHtml(e.user)}</td>
+      </tr>
+    `
+      }).join("")
+    }
+
+    let pendingBorrowDeviceId = null
+
+    const DEFAULT_NAMES = [
+      "Jens", "Eric", "Althea", "Niklas J"
+    ]
+
+    // Load/save custom names to localStorage
+    function loadNames() {
+      const saved = JSON.parse(localStorage.getItem("borrowerNames") || "[]")
+      const merged = [...DEFAULT_NAMES]
+      saved.forEach(n => {
+        if (n && !merged.includes(n)) merged.push(n)
+      })
+      return merged
+    }
+
+    function saveCustomName(name) {
+      const trimmed = name.trim()
+      if (!trimmed) return
+      const saved = JSON.parse(localStorage.getItem("borrowerNames") || "[]")
+      if (!saved.includes(trimmed)) {
+        saved.push(trimmed)
+        localStorage.setItem("borrowerNames", JSON.stringify(saved))
+      }
+    }
+
+    function resetNames() {
+      localStorage.removeItem("borrowerNames")
+      alert("Names reset")
+    }
+
+    function openNameModal(deviceId) {
+      pendingBorrowDeviceId = deviceId
+
+      document.getElementById("otherInputRow").classList.add("hidden")
+      document.getElementById("otherNameInput").value = ""
+
+      renderNameButtons()
+      document.getElementById("nameModal").classList.remove("hidden")
+    }
+
+    function closeNameModal() {
+      pendingBorrowDeviceId = null
+      document.getElementById("nameModal").classList.add("hidden")
+    }
+
+    function renderNameButtons() {
+      const names = loadNames()
+      const container = document.getElementById("nameButtons")
+      container.innerHTML = ""
+
+      names.forEach(name => {
+        const btn = document.createElement("button")
+        btn.className = "name-btn"
+        btn.textContent = name
+        btn.onclick = () => useSelectedName(name)
+        container.appendChild(btn)
+      })
+    }
+
+    function showOtherInput() {
+      document.getElementById("otherInputRow").classList.remove("hidden")
+      document.getElementById("otherNameInput").focus()
+    }
+
+    function addAndUseOtherName() {
+      const input = document.getElementById("otherNameInput")
+      const name = (input.value || "").trim()
       if (!name) return
 
-      await client
+      saveCustomName(name)
+      useSelectedName(name)
+    }
+
+    async function useSelectedName(name) {
+      if (pendingBorrowDeviceId == null) return
+      const deviceId = pendingBorrowDeviceId
+      closeNameModal()
+      await borrowDevice(deviceId, name)
+    }
+
+    function borrowedAgoText(isoTime) {
+      if (!isoTime) return ""
+
+      const borrowed = new Date(isoTime)
+      const now = new Date()
+
+      const msPerDay = 24 * 60 * 60 * 1000
+      const diffDays = Math.floor((now - borrowed) / msPerDay)
+
+      if (diffDays <= 0) return "today"
+      if (diffDays === 1) return "1 day ago"
+      return `${diffDays} days ago`
+    }
+
+    async function loadDevices() {
+      const { data, error } = await client
+        .from("devices")
+        .select("*")
+
+      if (error) {
+        alert(error.message)
+        return
+      }
+
+      data.sort((a, b) => {
+        const getParts = (str) => {
+          const match = str.match(/^(.*?)(\d+)$/)
+          if (!match) return [str, 0]
+          return [match[1], parseInt(match[2])]
+        }
+
+        const [prefixA, numberA] = getParts(a.code_name)
+        const [prefixB, numberB] = getParts(b.code_name)
+
+        if (prefixA !== prefixB) {
+          return prefixA.localeCompare(prefixB)
+        }
+
+        return numberA - numberB
+      })
+
+      const total = data.length
+      const borrowed = data.filter(d => d.is_borrowed).length
+
+      const borrowedEl = document.getElementById("borrowedCount")
+      const totalEl = document.getElementById("totalCount")
+
+      // Only animate if value changed
+      if (borrowedEl.textContent != borrowed) {
+        borrowedEl.classList.add("bump")
+
+        setTimeout(() => {
+          borrowedEl.classList.remove("bump")
+        }, 250)
+      }
+
+      borrowedEl.textContent = borrowed
+      totalEl.textContent = total
+      const grid = document.getElementById("deviceGrid")
+      grid.innerHTML = ""
+
+      data.forEach(device => {
+        const tile = document.createElement("div")
+
+        const overdueDays = 14
+        let extraClass = ""
+
+        if (device.is_borrowed && device.borrowed_at) {
+          const borrowed = new Date(device.borrowed_at)
+          const diffDays = Math.floor((Date.now() - borrowed.getTime()) / (24 * 60 * 60 * 1000))
+          if (diffDays >= overdueDays) extraClass = " overdue"
+        }
+
+        tile.className = "tile " + (device.is_borrowed ? "borrowed" : "available") + extraClass
+
+        tile.innerHTML = `
+      <img src="${device.image_url || 'images/placeholder.jpg'}"
+          onerror="this.onerror=null;this.src='images/placeholder.jpg';">
+
+      <div class="code-name">${device.code_name}</div>
+      <div class="device-name">${device.name}</div>
+      ${device.os_name ? `
+        <div class="os-info">
+          ${device.os_name}${device.os_version ? " " + device.os_version : ""}
+        </div>
+      ` : ""}
+      <div class="status">
+
+        ${device.is_borrowed
+            ? `
+            <div class="borrowed-by">
+              🔴 Borrowed by ${device.borrowed_by || "Unknown"}
+            </div>
+            <div class="borrowed-ago">
+              ${borrowedAgoText(device.borrowed_at)}
+            </div>
+          `
+            : `
+            <div class="available-status">
+              🟢 Available
+            </div>
+          `}
+        </div>
+
+      <button class="${device.is_borrowed ? "return-btn" : "borrow-btn"}"
+        onclick="toggleBorrow(${device.id}, ${device.is_borrowed})">
+        ${device.is_borrowed ? "Return" : "Borrow"}
+      </button>
+    `
+        grid.appendChild(tile)
+      })
+    }
+
+    async function toggleBorrow(id, isBorrowed) {
+      if (!isBorrowed) {
+        openNameModal(id)
+      } else {
+        await returnDevice(id)
+        loadDevices()
+      }
+    }
+
+    async function borrowDevice(id, name) {
+      const now = new Date().toISOString()
+
+      const { error: deviceError } = await client
         .from("devices")
         .update({
           is_borrowed: true,
           borrowed_by: name,
-          borrowed_at: new Date().toISOString()
+          borrowed_at: now
         })
         .eq("id", id)
 
-    } else {
+      if (deviceError) {
+        alert(deviceError.message)
+        return
+      }
 
-      await client
+      const { error: txError } = await client
+        .from("transactions")
+        .insert({
+          device_id: parseInt(id, 10),
+          user_name: name,
+          borrowed_at: now
+        })
+
+      if (txError) {
+        alert(txError.message)
+        return
+      }
+
+      loadDevices()
+    }
+
+    async function returnDevice(id) {
+      const now = new Date().toISOString()
+
+      const { error: deviceError } = await client
         .from("devices")
         .update({
           is_borrowed: false,
@@ -160,17 +764,38 @@
           borrowed_at: null
         })
         .eq("id", id)
+
+      if (deviceError) {
+        alert(deviceError.message)
+        return
+      }
+
+      const { error: txError } = await client
+        .from("transactions")
+        .update({ returned_at: now })
+        .eq("device_id", parseInt(id, 10))
+        .is("returned_at", null)
+
+      if (txError) {
+        alert(txError.message)
+        return
+      }
     }
 
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeNameModal()
+      if (e.key === "Enter" && !document.getElementById("otherInputRow").classList.contains("hidden")) {
+        addAndUseOtherName()
+      }
+    })
+
     loadDevices()
-  }
 
-  loadDevices()
+    // Auto refresh every 15 seconds
+    setInterval(loadDevices, 15000)
 
-  // Auto refresh every 15 seconds
-  setInterval(loadDevices, 15000)
-
-</script>
+  </script>
 
 </body>
+
 </html>
