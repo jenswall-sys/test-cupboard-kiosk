@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name=”apple-mobile-web-app-capable” content=”yes “>
   <title>Test Cupboard</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -11,6 +12,8 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f5f5f5;
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     h1 {
@@ -73,6 +76,11 @@
       border-radius: 10px;
       border: none;
       cursor: pointer;
+      min-height: 48px;
+    }
+
+    button:active {
+      transform: scale(0.97);
     }
 
     .borrow-btn {
